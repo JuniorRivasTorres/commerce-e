@@ -7,6 +7,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from './reducer';
 import axios from './axios';
+import {db} from "./firebase"; 
 
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
@@ -44,7 +45,21 @@ function Payment() {
             card: elements.getElement(CardElement)
           }
 
+       
+
         }).then(({ paymentIntent }) => {
+         
+            db
+            .collection('users')
+            .doc(user?.uid)
+            .collection()
+            .doc(paymentIntent.id)
+            .set({
+                basket: basket,
+                amount: paymentIntent.amount,
+                created: paymentIntent.created
+            })
+
             setSucceeded(true);
             setError(null)
             setProcessing(false)
@@ -111,7 +126,8 @@ function Payment() {
                                 <CardElement onChange={handleChange}/>
 
                                 <div className='payment__priceContainer'>
-                                        <CurrencyFormat renderText={(value) => (
+                                        <CurrencyFormat 
+                                        renderText={(value) => (
                                         <>    
                                             <h3>Order Total: {value}</h3>
                                         </>
@@ -122,8 +138,8 @@ function Payment() {
                                             thousandSeparator={true}
                                             prefix={"$"}
                                         />
-                                        <button disabled={processing || disabled || succeeded}>                                        
-                                            <span>{processing ? <p>Processing</p> : "Buy Now" }</span>
+                                        <button disabled={processing || disabled ||  succeeded}>                                        
+                                            <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                                         </button>
                                 </div>
                                 {error && <div>{error}</div>}

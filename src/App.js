@@ -17,7 +17,7 @@ import { Elements } from "@stripe/react-stripe-js";
 
 
 const promise = loadStripe(
-  "pk_test_51HnODOKnmLQ1H2vk2U6cCmEbp7qUs95wxuMaMv7CbSuyCJl0DDAJCQhA2nB0KYiz3f2vuoP2rxZC76u271nLjOGS00XZbvQTsp"
+  "pk_test_51HnnJ0FPNMmdgJ6pIYLrXYYdA61mFQq5OCjb4WyPdDrFUf3U3RzNEOf1lqtut5ZXKz0DzuCdeaMv1PgPmiVmt1OU00k4UX0HFR"
 );
 
 
@@ -27,7 +27,7 @@ function App() {
   useEffect(() => {
 //CA VA ROULER une fois quand le component telecharge 
     auth.onAuthStateChanged(authUser => {
-      console.log('THE USER IS >>>', authUser);
+      console.log(`THE USER IS >>>`, authUser);
 
       if (authUser) {
   //lutilisateur login et lutilisateur log out
@@ -41,7 +41,6 @@ function App() {
         User: null
       })
       }
-
     })
   }, [])
 
@@ -64,8 +63,7 @@ function App() {
             <Header />
               <Elements stripe={promise}>
                 <Payment />
-              </Elements>
-              
+              </Elements> 
             </Route>
             <Route path="/">
             <Header />
