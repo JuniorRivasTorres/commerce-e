@@ -20,33 +20,32 @@ const promise = loadStripe(
   "pk_test_51HnnJ0FPNMmdgJ6pIYLrXYYdA61mFQq5OCjb4WyPdDrFUf3U3RzNEOf1lqtut5ZXKz0DzuCdeaMv1PgPmiVmt1OU00k4UX0HFR"
 );
 
-
 function App() {
   const [{}, dispatch] = useStateValue();
 
   useEffect(() => {
 //CA VA ROULER une fois quand le component telecharge 
-    auth.onAuthStateChanged(authUser => {
-      console.log(`THE USER IS >>>`, authUser);
+    auth.onAuthStateChanged((authUser) => {
+      console.log('THE USER IS >>>', authUser);
 
       if (authUser) {
   //lutilisateur login et lutilisateur log out
       dispatch({
         type: 'SET_USER',
-        user: authUser
-      })
+        user: authUser,
+      });
     } else {
       dispatch({
         type: 'SET_USER',
         User: null
-      })
+      });
       }
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <Router>
-      <div className="App">
+      <div className="app">
         <Switch>
         <Route path="/orders">
             <Header />

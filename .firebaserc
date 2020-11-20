@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "e-commerce-7a00e"
+    "default": "e-commerce-7a00e",
+    "commerce-e": "commerce-e-89bd1",
+    "commerce": "commerce-e-89bd1",
+    "jjj": "commerce-e-89bd1"
   }
 }

@@ -14,6 +14,7 @@
     margin-right: auto;
     margin-left: auto;
 }
+
 .login__container {
     width: 300px;
     height: fit-content;
@@ -24,23 +25,23 @@
     padding: 20px;
 }
 
-.login__container h1 {
+.login__container > h1 {
     font-weight: 500;
     margin-bottom: 20px;
 }
 
-.login__container form h5 {
+.login__container > form > h5 {
     margin-bottom: 5px;
 }
 
-.login__container form input {
+.login__container > form > input {
     height: 30px;
     margin-bottom: 10px;
     background-color: white;
     width: 98%;
 }
 
-.login__container p {
+.login__container > p {
     margin-top: 15px;
     font-size: 12px;
 }
